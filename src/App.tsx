@@ -1,7 +1,10 @@
-import { Home } from "./pages/Home";
+import { AuthContextProvider } from './hooks/useAuth';
+import { Home } from './pages/Home';
 
 export function App() {
   return (
-    <Home />
-  )
+    <AuthContextProvider>
+      <Home />
+    </AuthContextProvider>
+  );
 }

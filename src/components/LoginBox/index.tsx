@@ -1,15 +1,26 @@
+import { VscGithubInverted } from 'react-icons/vsc';
+
+import { useAuth } from '../../hooks/useAuth';
+
+import BannerGirl from '../../assets/banner-girl.png';
 
 import { LoginBoxWrapper } from './styles';
 
-import BannerGirl from './../../assets/banner-girl.png';
-
 export function LoginBox() {
+  const { githubSignIn, user, signOut } = useAuth();
+
+  console.log(user);
+
   return (
     <LoginBoxWrapper imgUrl={BannerGirl}>
       <strong>Envie e compartilhe sua mensagem</strong>
-      <button>
+      <a href={githubSignIn}>
+        <VscGithubInverted size={24} />
         ENTRAR COM GITHUB
+      </a>
+      <button type="button" onClick={signOut}>
+        DESLOGAR
       </button>
     </LoginBoxWrapper>
-  )
+  );
 }

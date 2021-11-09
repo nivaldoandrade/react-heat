@@ -8,12 +8,11 @@ export const HomeContainer = styled.main`
 
   display: flex;
   justify-content: center;
-
-`
+`;
 
 export const HomeWrapper = styled.div`
   flex: 1;
-`
+`;
 export const ImageWrapper = styled.section``;
 
 export const Message = styled.section``;
