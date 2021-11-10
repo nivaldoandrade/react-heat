@@ -1,6 +1,13 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  login: string;
+  avatar_url: string;
+}
+
 interface AuthContextProps {
   githubSignIn: string;
   user: User | null;
@@ -11,7 +18,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-interface User {
+interface AuthUser {
   token: string;
   user: {
     id: string;
@@ -32,7 +39,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     if (token && user) {
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-      return { token, user: JSON.parse(user) };
+      return JSON.parse(user);
     }
 
     return null;
@@ -41,7 +48,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const githubSignIn = `https://github.com/login/oauth/authorize?client_id=4ec83ab6d1a789953ca4`;
 
   async function AutheticateUser(githubCode: string) {
-    const response = await api.post<User>('/authenticate', null, {
+    const response = await api.post<AuthUser>('/authenticate', null, {
       params: {
         code: githubCode,
       },
@@ -50,7 +57,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     localStorage.setItem('@dowhile2021:token', response.data.token);
     localStorage.setItem('@dowhile2021:user', JSON.stringify(response.data.user));
 
-    setUser(response.data);
+    api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+
+    setUser(response.data.user);
   }
 
   useEffect(() => {

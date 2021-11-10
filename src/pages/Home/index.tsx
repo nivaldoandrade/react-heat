@@ -1,29 +1,24 @@
 import { Header } from '../../components/Header';
 import { LoginBox } from '../../components/LoginBox';
+import { MessageForm } from '../../components/MessageForm';
 import { MessagesList } from '../../components/MessagesList';
 
-import { HomeContainer, HomeWrapper, Message } from './styles';
+import { useAuth } from '../../hooks/useAuth';
 
-interface MessageProps {
-  id: string;
-  message: string;
-  user: {
-    id: string;
-    name: string;
-    avatar_url?: string;
-  };
-}
+import BackgroundImg from '../../assets/background.png';
+
+import { HomeContainer, HomeWrapper } from './styles';
 
 export function Home() {
+  const { user } = useAuth();
+
   return (
-    <HomeContainer>
+    <HomeContainer user={!!user} imgUrl={BackgroundImg}>
       <HomeWrapper>
         <Header />
-        <Message>
-          <MessagesList />
-        </Message>
+        <MessagesList />
       </HomeWrapper>
-      <LoginBox />
+      {user ? <MessageForm /> : <LoginBox />}
     </HomeContainer>
   );
 }

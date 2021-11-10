@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 
 import { MessageBox } from '../MessageBox';
 
@@ -16,8 +17,26 @@ interface MessageProps {
   };
 }
 
+const messagesQueue = [] as MessageProps[];
+
+const socket = io('http://localhost:3333');
+
+socket.on('message', (message: MessageProps) => {
+  messagesQueue.push(message);
+});
+
 export function MessagesList() {
   const [last3Messages, setLast3Messages] = useState<MessageProps[]>([]);
+
+  useEffect(() => {
+    setInterval(() => {
+      if (messagesQueue.length > 0) {
+        setLast3Messages(state => [messagesQueue[0], state[0], state[1]].filter(Boolean));
+
+        messagesQueue.shift();
+      }
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     async function getLast3Messages() {
