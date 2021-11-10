@@ -16,9 +16,6 @@ export function LoginBox() {
         <VscGithubInverted size={24} />
         ENTRAR COM GITHUB
       </a>
-      {/* <button type="button" onClick={signOut}>
-        DESLOGAR
-      </button> */}
     </LoginBoxWrapper>
   );
 }
