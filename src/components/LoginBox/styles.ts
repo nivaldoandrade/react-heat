@@ -5,13 +5,13 @@ interface LoginBoxWrapperProps {
 }
 
 export const LoginBoxWrapper = styled.div<LoginBoxWrapperProps>`
-  width: 100%;
-  max-width: 453px;
+  /* width: 100%;
+  max-width: 28.3rem; */
   height: 100vh;
   background: url(${props => props.imgUrl}) no-repeat center top;
 
   text-align: center;
-  padding: 537px 84px 0;
+  padding: 33.56rem 5.25rem 0;
 
   display: flex;
   flex-direction: column;
@@ -19,36 +19,16 @@ export const LoginBoxWrapper = styled.div<LoginBoxWrapperProps>`
   justify-content: flex-start;
 
   strong {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: bold;
-    line-height: 36px;
+    line-height: 2.25rem;
     color: #e1e1e6;
 
-    margin-bottom: 50px;
+    margin-bottom: 3.12rem;
   }
 
-  a {
-    width: 100%;
-    background-color: #ffcd1e;
-    height: 56px;
-    padding: 0 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    border: 0;
-    border-top-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-
-    font-size: 14px;
-    font-weight: 700;
-    color: #09090a;
-    transition: all 200ms ease-in-out;
-
-    &:hover {
-      filter: brightness(0.8);
-    }
+  @media (max-width: 1024px) {
+    display: none;
+    visibility: hidden;
   }
 `;

@@ -10,11 +10,11 @@ export const HomeContainer = styled.main<HomeContainerProps>`
   max-width: 1120px;
   height: 100vh;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 1rem;
 
   display: grid;
   grid-template-columns: 1fr 453px;
-  gap: 147px;
+  gap: 9.18rem;
 
   ${props =>
     props.user &&
@@ -30,7 +30,18 @@ export const HomeContainer = styled.main<HomeContainerProps>`
         position: absolute;
         right: 0;
       }
+
+      @media (max-width: 1024px) {
+        &::before {
+          display: none;
+          visibility: hidden;
+        }
+      }
     `}
+
+  @media(max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const HomeWrapper = styled.div``;

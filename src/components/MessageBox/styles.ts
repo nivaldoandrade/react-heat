@@ -1,23 +1,33 @@
 import styled from 'styled-components';
 
 export const MessageContainer = styled.div`
-  width: 440px;
+  width: 100%;
+  max-width: 27.5rem;
+  word-wrap: break-word;
 
   p {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     color: #e1e1e6;
+  }
+
+  @media (max-width: 375px) {
+    max-width: 24rem;
+  }
+
+  @media (max-width: 320px) {
+    max-width: 20rem;
   }
 `;
 
 export const InfoUser = styled.div`
   display: flex;
   align-items: center;
-  gap: 17px;
-  margin-top: 24px;
+  gap: 1rem;
+  margin-top: 1.5rem;
 
   span {
-    font-size: 16px;
+    font-size: 1rem;
     color: #e1e1e6;
   }
 `;
@@ -32,8 +42,8 @@ export const ImageBorder = styled.div`
   justify-content: center;
 
   img {
-    width: 35px;
-    height: 35px;
+    width: 2.18rem;
+    height: 2.18rem;
     border-radius: 50%;
     border: 5px solid #121214;
   }
