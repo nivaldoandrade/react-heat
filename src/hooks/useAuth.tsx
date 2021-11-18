@@ -45,7 +45,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     return null;
   });
 
-  const githubSignIn = `https://github.com/login/oauth/authorize?client_id=4ec83ab6d1a789953ca4`;
+  const githubSignIn = `https://github.com/login/oauth/authorize?client_id=${
+    import.meta.env.VITE_GITHUB_CLIENT_ID
+  }`;
 
   async function AutheticateUser(githubCode: string) {
     const response = await api.post<AuthUser>('/authenticate', null, {
